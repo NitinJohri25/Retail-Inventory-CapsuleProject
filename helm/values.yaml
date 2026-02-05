@@ -3,8 +3,8 @@ namespace: retail
 replicaCount: 3
 
 image:
-  repository: retailacrdev.azurecr.io/retail-app
-  tag: v2
+  repository: retailacrdev.azurecr.io/microservice1
+  tag: v1.0.0
   pullPolicy: IfNotPresent
 
 service:
