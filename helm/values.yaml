@@ -3,7 +3,7 @@ namespace: retail
 replicaCount: 3
 
 image:
-  repository: myregistry.azurecr.io/retail-aap
+  repository: retailacrdev.azurecr.io/retail-app
   tag: v2
   pullPolicy: IfNotPresent
 
