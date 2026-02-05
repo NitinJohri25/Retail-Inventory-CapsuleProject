@@ -1,0 +1,20 @@
+{{- if .Values.servicemonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "retail-app.fullname" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    release: {{ .Values.servicemonitor.release }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "retail-app.name" . }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Values.namespace }}
+  endpoints:
+    - port: http
+      path: {{ .Values.servicemonitor.path }}
+      interval: {{ .Values.servicemonitor.interval }}
+{{- end }}

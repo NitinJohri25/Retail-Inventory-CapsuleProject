@@ -1,0 +1,11 @@
+namespace: retail
+
+replicaCount: 3
+
+image:
+  repository: myregistry.azurecr.io/retail-app
+  tag: v2
+
+ingress:
+  enabled: true
+  host: retail.company.com

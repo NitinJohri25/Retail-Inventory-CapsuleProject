@@ -1,0 +1,51 @@
+namespace: retail
+
+replicaCount: 3
+
+image:
+  repository: myregistry.azurecr.io/microservice1
+  tag: v1.0.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: true
+  host: retail.company.com
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  paths:
+    - path: /microservice1
+      pathType: Prefix
+      service: microservice1-svc
+      port: 80
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+env:
+  APP_ENV: "production"
+  LOG_LEVEL: "info"
+
+secret:
+  DB_USER: "retail_user"
+  DB_PASSWORD: "StrongP@ssword123"
+
+persistence:
+  enabled: true
+  storageClass: managed-premium
+  size: 5Gi
+
+servicemonitor:
+  enabled: true
+  release: monitoring
+  path: /metrics
+  interval: 15s
