@@ -3,7 +3,7 @@ namespace: retail
 replicaCount: 3
 
 image:
-  repository: myregistry.azurecr.io/microservice1
+  repository: myregistry.azurecr.io/retail-aap
   tag: v1.0.0
   pullPolicy: IfNotPresent
 
